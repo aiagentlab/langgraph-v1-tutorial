@@ -3,33 +3,33 @@ from typing import Optional
 import pytz
 from datetime import datetime
 
+# FastMCP 서버 초기화 및 구성
 mcp = FastMCP(
-    "Current Time",  # Name of the MCP server
-    instructions="Information about the current time in a given timezone",  # Instructions for the LLM on how to use this tool
+    "Current Time",  # MCP 서버 이름
+    instructions="주어진 시간대의 현재 시간 정보를 제공합니다",
 )
 
 
 @mcp.tool()
 async def get_current_time(timezone: Optional[str] = "Asia/Seoul") -> str:
-    """
-    Get current time information for the specified timezone.
+    """지정된 시간대의 현재 시간 정보를 가져옵니다.
 
-    This function returns the current system time for the requested timezone.
+    이 함수는 요청된 시간대의 현재 시스템 시간을 반환합니다.
 
     Args:
-        timezone (str, optional): The timezone to get current time for. Defaults to "Asia/Seoul".
+        timezone: 현재 시간을 조회할 시간대. 기본값은 "Asia/Seoul"입니다.
 
     Returns:
-        str: A string containing the current time information for the specified timezone
+        지정된 시간대의 현재 시간 정보가 포함된 문자열
     """
     try:
-        # Get the timezone object
+        # 시간대 객체를 가져옵니다
         tz = pytz.timezone(timezone)
 
-        # Get current time in the specified timezone
+        # 지정된 시간대의 현재 시간을 가져옵니다
         current_time = datetime.now(tz)
 
-        # Format the time as a string
+        # 시간을 문자열로 포맷합니다
         formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S %Z")
 
         return f"Current time in {timezone} is: {formatted_time}"
@@ -40,8 +40,8 @@ async def get_current_time(timezone: Optional[str] = "Asia/Seoul") -> str:
 
 
 if __name__ == "__main__":
-    # Print a message indicating the server is starting
-    print("mcp remote server is running...")
+    # 서버가 시작됨을 알리는 메시지를 출력합니다
+    print("MCP Remote 서버가 실행 중입니다...")
 
-    # start the server
+    # streamable-http 전송 방식으로 서버를 시작합니다 (포트 8002)
     mcp.run(transport="streamable-http", port=8002)

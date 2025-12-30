@@ -12,3 +12,5 @@ wheels/
 
 .cache/
 .DS_Store
+
+.claude/
