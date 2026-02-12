@@ -790,8 +790,8 @@
         "gap": 1,
         "fixedPoint": [0.5, 0]
       },
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "startArrowhead": "arrow",
+      "endArrowhead": null
     },
     {
       "id": "arrow-4",
@@ -874,8 +874,8 @@
         "gap": 1,
         "fixedPoint": [0.35, 0]
       },
-      "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "startArrowhead": "arrow",
+      "endArrowhead": null
     },
     {
       "id": "arrow-6",
